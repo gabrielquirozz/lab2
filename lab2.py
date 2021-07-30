@@ -4,6 +4,8 @@ import numpy as np
 import pandas
 from collections import Counter
 import matplotlib.pyplot as plt
+import string
+import random
 
 #-----------------------1---------------------------------
 x = "10110111000110"
@@ -78,3 +80,127 @@ df = pandas.DataFrame.from_dict(pfreq, orient='index')
 df.plot(kind='bar')
 plt.show()
 
+def stringabits(texto):
+    stb = ''.join(format(ord(i), '08b') for i in texto)
+    return stb
+
+texto = input("Ingrese una cadena de texto:\n")
+print(texto, ',',stringabits(texto))
+
+number_of_strings = 1
+length_of_string = len(texto)
+for x in range(number_of_strings):
+  textoy = ''.join(random.choice(string.ascii_letters) for _ in range(length_of_string))
+
+print('Cadena aleatoria:', stringabits(textoy))
+Z2 = operacionXOR(str(stringabits(texto)), str(stringabits(textoy)))
+print('Operacion XOR:', Z2)
+
+#se hallan monogramas (simbolos)
+tokens = re.findall('.', stringabits(Z2))
+#se genera un objeto de tipo FreqDist (contiene un diccionario adentro)
+freq = nltk.FreqDist(tokens)
+top = freq.most_common(50)
+array = [a[1] for a in top]
+f = np.array(array)
+
+#se generan las probabilidades
+p = f/f.sum()
+pfreq= {top[i][0]: p[i] for i in range(0, len(top))}
+
+#histograma
+df = pandas.DataFrame.from_dict(pfreq, orient='index')
+df.plot(kind='bar')
+plt.show()
+
+
+#----------------------3------------------------------
+
+#se hallan bigramas (simbolos)
+tokens = re.findall('..', stringabits(Z2))
+#se genera un objeto de tipo FreqDist (contiene un diccionario adentro)
+freq = nltk.FreqDist(tokens)
+top = freq.most_common(50)
+array = [a[1] for a in top]
+f = np.array(array)
+
+#se generan las probabilidades
+p = f/f.sum()
+pfreq= {top[i][0]: p[i] for i in range(0, len(top))}
+
+#histograma
+df = pandas.DataFrame.from_dict(pfreq, orient='index')
+df.plot(kind='bar')
+plt.show()
+
+#se hallan trigramas (simbolos)
+tokens = re.findall('...', stringabits(Z2))
+#se genera un objeto de tipo FreqDist (contiene un diccionario adentro)
+freq = nltk.FreqDist(tokens)
+top = freq.most_common(50)
+array = [a[1] for a in top]
+f = np.array(array)
+
+#se generan las probabilidades
+p = f/f.sum()
+pfreq= {top[i][0]: p[i] for i in range(0, len(top))}
+
+#histograma
+df = pandas.DataFrame.from_dict(pfreq, orient='index')
+df.plot(kind='bar')
+plt.show()
+
+
+#se hallan monogramas (simbolos)
+tokens = re.findall('.', stringabits(textoy))
+#se genera un objeto de tipo FreqDist (contiene un diccionario adentro)
+freq = nltk.FreqDist(tokens)
+top = freq.most_common(50)
+array = [a[1] for a in top]
+f = np.array(array)
+
+#se generan las probabilidades
+p = f/f.sum()
+pfreq= {top[i][0]: p[i] for i in range(0, len(top))}
+
+#histograma
+df = pandas.DataFrame.from_dict(pfreq, orient='index')
+df.plot(kind='bar')
+plt.show()
+
+
+#----------------------3------------------------------
+
+#se hallan bigramas (simbolos)
+tokens = re.findall('..', stringabits(textoy))
+#se genera un objeto de tipo FreqDist (contiene un diccionario adentro)
+freq = nltk.FreqDist(tokens)
+top = freq.most_common(50)
+array = [a[1] for a in top]
+f = np.array(array)
+
+#se generan las probabilidades
+p = f/f.sum()
+pfreq= {top[i][0]: p[i] for i in range(0, len(top))}
+
+#histograma
+df = pandas.DataFrame.from_dict(pfreq, orient='index')
+df.plot(kind='bar')
+plt.show()
+
+#se hallan trigramas (simbolos)
+tokens = re.findall('...', stringabits(textoy))
+#se genera un objeto de tipo FreqDist (contiene un diccionario adentro)
+freq = nltk.FreqDist(tokens)
+top = freq.most_common(50)
+array = [a[1] for a in top]
+f = np.array(array)
+
+#se generan las probabilidades
+p = f/f.sum()
+pfreq= {top[i][0]: p[i] for i in range(0, len(top))}
+
+#histograma
+df = pandas.DataFrame.from_dict(pfreq, orient='index')
+df.plot(kind='bar')
+plt.show()
